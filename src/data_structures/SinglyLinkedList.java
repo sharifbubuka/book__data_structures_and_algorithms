@@ -54,6 +54,7 @@ public class SinglyLinkedList<T> {
         return answer;
     }
 
+    // the inner node class
     private static class Node<T> {
         private T element;
         private Node<T> next;
@@ -74,5 +75,21 @@ public class SinglyLinkedList<T> {
         public void setNext(Node<T> next) {
             this.next = next;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this.getClass() != o.getClass()) return false;
+        SinglyLinkedList other = (SinglyLinkedList) o;
+        if (this.size != other.size) return false;
+        Node walkA = this.head;
+        Node walkB = other.head;
+        while (walkA != null) {
+            if (!walkA.getElement().equals(walkB.getElement())) return false;
+            walkA = walkA.getNext();
+            walkB = walkB.getNext();
+        }
+        return true;
     }
 }
