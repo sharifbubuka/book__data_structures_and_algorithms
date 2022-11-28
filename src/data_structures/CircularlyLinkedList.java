@@ -62,19 +62,19 @@ public class CircularlyLinkedList<T> {
 
     private static class Node<T> {
         private T element;
-        private CircularlyLinkedList.Node<T> next;
+        private Node<T> next;
 
-        public Node(T element, CircularlyLinkedList.Node<T> next) {
+        public Node(T element, Node<T> next) {
             this.element = element;
             this.next = next;
         }
 
         public T getElement() {
-            return element;
+            return this.element;
         }
 
         public CircularlyLinkedList.Node<T> getNext() {
-            return next;
+            return this.next;
         }
 
         public void setNext(CircularlyLinkedList.Node<T> next) {
