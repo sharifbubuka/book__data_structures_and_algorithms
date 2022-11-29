@@ -3,7 +3,7 @@ package data_structures;
 /**
  * implemented using sentinels (header and trailer nodes)
  */
-public class DoublyLinkedList<T> {
+public class DoublyLinkedList<T> implements Cloneable {
     private Node<T> header;
     private Node<T> trailer;
     private int size = 0;
@@ -113,5 +113,22 @@ public class DoublyLinkedList<T> {
             walkB = walkB.getNext();
         }
         return true;
+    }
+
+    @Override
+    public DoublyLinkedList<T> clone() throws CloneNotSupportedException {
+        DoublyLinkedList<T> other = (DoublyLinkedList<T>) super.clone();
+        if (this.size > 0) {
+            other.header = new Node(null, null, null);
+            other.trailer = new Node(null, null, null);
+            other.header.setNext(other.trailer);
+            Node<T> walkOriginal = this.header.getNext();
+            while (walkOriginal.getElement() != null) {
+                T newest = walkOriginal.getElement();
+                other.addFirst(newest);
+                walkOriginal = walkOriginal.getNext();
+            }
+        }
+        return other;
     }
 }

@@ -4,8 +4,8 @@ package data_structures;
  * for instance, used to implement round-robin scheduling
  * algorithm for allocating computational in an operating system.
  */
-public class CircularlyLinkedList<T> {
-    private CircularlyLinkedList.Node<T> tail = null;
+public class CircularlyLinkedList<T> implements Cloneable{
+    private Node<T> tail = null;
     private int size = 0;
 
     public CircularlyLinkedList() {}
@@ -97,5 +97,24 @@ public class CircularlyLinkedList<T> {
             walkB = walkB.getNext();
         }
         return true;
+    }
+
+    @Override
+    public CircularlyLinkedList<T> clone() throws CloneNotSupportedException {
+        CircularlyLinkedList<T> other = (CircularlyLinkedList<T>) super.clone();
+        if (this.size > 0) {
+            other.tail = new Node(this.tail.getElement(), null);
+            Node<T> walkOriginal = this.tail.getNext();
+            Node<T> otherTail = other.tail;
+            int sizeCount = 1;
+            while (sizeCount <= this.size) {
+                Node<T> newest = new Node(walkOriginal.getNext(), null);
+                otherTail.setNext(newest);
+                otherTail = newest;
+                walkOriginal = walkOriginal.getNext();
+                sizeCount++;
+            }
+        }
+        return other;
     }
 }

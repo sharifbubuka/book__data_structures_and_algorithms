@@ -1,6 +1,6 @@
 package data_structures;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T> implements Cloneable {
     private Node<T> head = null;
     private Node<T> tail = null;
     private int size = 0;
@@ -91,5 +91,22 @@ public class SinglyLinkedList<T> {
             walkB = walkB.getNext();
         }
         return true;
+    }
+
+    @Override
+    public SinglyLinkedList<T> clone() throws CloneNotSupportedException {
+        SinglyLinkedList<T> other = (SinglyLinkedList<T>) super.clone();
+        if (this.size > 0) {
+            other.head = new Node(this.head.getElement(), null);
+            Node<T> walkOriginal = this.head.getNext();
+            Node<T> otherTail = other.head;
+            while (walkOriginal != null) {
+                Node<T> newest = new Node(walkOriginal.getElement(), null);
+                otherTail.setNext(newest);
+                otherTail = newest;
+                walkOriginal = walkOriginal.getNext();
+            }
+        }
+        return other;
     }
 }
