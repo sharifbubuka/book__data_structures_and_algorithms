@@ -81,4 +81,21 @@ public class CircularlyLinkedList<T> {
             this.next = next;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this.getClass() != o.getClass()) return false;
+        CircularlyLinkedList other = (CircularlyLinkedList) o;
+        if (this.size != other.size()) return false;
+        // check for equivalence per node pair starting from tail
+        Node walkA = this.tail;
+        Node walkB = other.tail;
+        while (walkA != null) {
+            if (!walkA.getElement().equals(walkB.getElement())) return false;
+            walkA = walkA.getNext();
+            walkB = walkB.getNext();
+        }
+        return true;
+    }
 }
