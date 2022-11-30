@@ -1,4 +1,4 @@
-package data_structures;
+package data_structures.list;
 
 /**
  * implemented using sentinels (header and trailer nodes)

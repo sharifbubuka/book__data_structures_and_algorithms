@@ -1,4 +1,4 @@
-package data_structures;
+package data_structures.list;
 
 /**
  * for instance, used to implement round-robin scheduling

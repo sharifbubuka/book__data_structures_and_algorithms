@@ -1,4 +1,4 @@
-package data_structures;
+package data_structures.list;
 
 public class SinglyLinkedList<T> implements Cloneable {
     private Node<T> head = null;
