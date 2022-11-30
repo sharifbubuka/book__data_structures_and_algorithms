@@ -39,12 +39,12 @@ public class DoublyLinkedList<T> implements Cloneable {
         addBetween(element, this.trailer.getPrev(), this.trailer);
     }
 
-    public T removeFirst(T element) {
+    public T removeFirst() {
         if (this.isEmpty()) return null;
         return this.remove(this.header.getNext());
     }
 
-    public T removeLast(T element) {
+    public T removeLast() {
         if (this.isEmpty()) return null;
         return this.remove(this.trailer.getPrev());
     }
